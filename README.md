@@ -38,8 +38,8 @@ Status: In development.
 
 ### Creating the database
 ```
-myoj > cd .\project\
-myoj > python
+(myoj): > cd .\project\
+(myoj): > python
 >>> from app import db, create_app
 >>> db.create_all(app=create_app())
 >>> exit()
