@@ -47,5 +47,5 @@ Status: In development.
 
 ## Start project
 ```
-myoj > flask run
+(myoj): > flask run
 ```
