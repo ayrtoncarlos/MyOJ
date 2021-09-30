@@ -20,27 +20,32 @@ Status: In development.
 ## Virtualenv
 
 ### Installing virtualenv
-
+```
 > pip install virtualenv
+```
 
 ### Creating virtual environment
-
+```
 > python -m venv myoj
+```
 
 ### Starting the virtual environment
-
+```
 > myoj\Scripts\activate
+```
 
 ## Database
 
 ### Creating the database
-
-`myoj` > cd .\project\
-`myoj` > python
+```
+myoj > cd .\project\
+myoj > python
 >>> from app import db, create_app
 >>> db.create_all(app=create_app())
 >>> exit()
+```
 
 ## Start project
-
-`myoj` > flask run
+```
+myoj > flask run
+```
