@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<body>
+  <div class="container">
+      <hr>
+      <h1 class="text-center">Meu OJ</h1>
+      <hr>
+      <div class="container">
+        <a href="/professor" class="button is-link is-pulled-left">Professor</a>
+        <a href="/problems" class="button is-link has-text-centered">Problemas</a>
+        <a href="/student" class="button is-link is-pulled-right">Aluno</a>
+      </div>
+      <hr>
+      <div class="row">
+          <hr>
+          <h2 class="text-center">Resultados</h2>
+          <hr><br>
+      </div>
+      <div class="row">
+          <div class="col text-center">
+              <p>Problema X</p>
+          </div>
+          <div class="col text-center">
+              <p>Código Y</p>
+          </div>
+          <div class="col text-center">
+              <p>Resultado Z</p>
+          </div>
+      </div>
+  </div>
+  <br><br>
+  <label class="label">Status dos seus problemas tentados</label>
+  <br><br>
+  <div class="columns is-centered">
+    <table class="table">  
+        {% set position = namespace(value=0) %}
+        {% set elements = namespace(value=(problems|length)) %}
+        {% for row in range(((problems|length) // 10) + 1) %}
+        <tr>
+            {% for i in range(1, elements.value) %}
+            <td style="border-width: 1px;"><a href="/problems/{{ problems[position.value].id }}">{{ problems[position.value].title }}</a></td>
+            {% set position.value = position.value + 1 %}
+            {% endfor %}
+        </tr>
+        {% set elements.value = (elements.value - position.value) + 1 %}
+        {% endfor %}
+    </table>
+  </div>
+</body>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+  <a href="/problems" class="button is-info is-pulled-left">Voltar</a>
+</div>
+<br><br>
+<div class="card">
+  <h1 class="is-size-3">{{ problem.title }}</h1>
+  <h5><strong>Time Limit: {{ problem.time_limit }}</strong></h5>
+  <div class="card-content">
+    <div class="content">
+      <div>
+        <div class="column"><strong>DESCRIÇÃO</strong><br/>
+          <p class="has-text-centered	has-text-justified">{{ problem.description }}</p>
+        </div>
+      </div>
+      <div class="columns has-text-centered">
+        <div class="column"><strong>ENTRADA</strong><br/>
+          <p class="has-text-justified">{{ problem.input_description }}</p>
+        </div>
+        <div class="is-divider-vertical"></div>
+        <div class="column">
+          <strong>SAÍDA</strong><br/>
+          <p class="has-text-justified">{{ problem.output_description }}</p>
+        </div>
+      </div>
+      <div>
+        <div class="column"><strong>RESTRIÇÕES</strong><br/>
+          <p class="has-text-centered">{{ problem.constraints }}</p>
+        </div>
+      </div>
+      <div class="columns has-text-centered">
+        <div class="column"><strong>Exemplo de entrada</strong><br/>
+          <p class="has-text-justified" style="background-color: lightgray; padding: 2px; color: black;">{{ problem.input_examples }}</p>
+        </div>
+        <div class="is-divider-vertical"></div>
+        <div class="column">
+          <strong>Exemplo de saída</strong><br/>
+          <p class="has-text-justified" style="background-color: lightgray; padding: 2px; color: black;">{{ problem.output_examples }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="is-link is-pulled-left">
+      <div class="has-background-info-dark has-text-primary-light">
+        <label id="problem_id" style="padding: 2px;">Problem: {{ problem.id }}</label>
+      </div>
+    </div>
+    <div class="select is-link is-pulled-right">
+      <select id="languages" class="languages has-background-info-dark has-text-primary-light" onchange="changeLanguage()">
+        <option>Select Language</option>
+        <option value="c"> C </option>
+        <option value="cpp"> C++ </option>
+        <option value="java"> Java </option>
+        <option value="python"> Python </option>
+      </select>
+    </div>
+    <div class="control">
+      <div class="editor textarea" id="editor" style="height: 400px;"></div>
+    </div>
+    <div class="is-link is-pulled-left">
+      <button class="button has-background-info-dark has-text-primary-light" onclick="executeCode()"> Run Code </button>
+    </div>
+    <div class="is-link is-pulled-right">
+      <button class="output button is-black"> Result </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

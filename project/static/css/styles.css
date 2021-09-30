@@ -1,0 +1,33 @@
+#center {
+    text-align: center;
+}
+
+.progress .progress-bar > span {
+    
+    height:100%;
+}
+.progress .progress-bar > span > * {
+    
+    
+    transition: opacity .3s ease-out;
+}
+  
+.progress .grade {
+    opacity:0;
+}
+  
+.progress:hover .grade {
+    opacity:1;
+}
+  
+.progress:hover .percentage {
+    opacity:0;
+}
+
+.percentage > span {
+    text-align: center;
+}
+
+.grade > span {
+    text-align: center;
+}

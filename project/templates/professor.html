@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <hr>
+    <h1>Professor</h1>
+    <hr>
+    <div>
+        <a href="/profile" class="button is-info is-pulled-left">Voltar</a>
+    </div>
+    <br><br>
+    <p>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+    </p>
+    <form method="POST" action="/professor" enctype="multipart/form-data">
+        <div class="card has-text-centered">
+            <div class="card-header-title">
+                <div class="column">
+                  <p class="bd-notification is-primary is-size-4">
+                    Adicione um novo Problema
+                  </p>
+                </div>
+            </div>
+            <div class="card-content">
+                <label class="is-pulled-left is-size-5">Título: </label>
+                <input type="text" placeholder="Título" class="input" name="title" required><br>
+                <label class="is-pulled-left is-size-5">Descrição: </label>
+                <textarea placeholder="Descreva seu problema aqui" class="textarea" name="description" required></textarea><br>
+                <label class="is-pulled-left is-size-5">Entrada: </label>
+                <textarea placeholder="Descreva a entrada do problema" class="textarea" name="input_description" required></textarea><br>
+                <label class="is-pulled-left is-size-5">Saída: </label>
+                <textarea placeholder="Descreva a saída do problema" class="textarea" name="output_description" required></textarea><br>
+                <label class="is-pulled-left is-size-5">Restrições: </label>
+                <textarea placeholder="Restrições do problema" class="textarea" name="constraints" required></textarea><br>
+                <div id="origem" class="columns is-vcentered">
+                    <div class="column">
+                        <label class="is-pulled-left is-size-5" >Exemplo de entrada: </label>
+                        <textarea type="text" placeholder="Exemplo de entrada de dados" class="textarea is-small is-pulled-left" name="input_examples"></textarea>
+                    </div>
+                    <div class="column">
+                        <label class="is-pulled-left is-size-5">Exemplo de saída: </label>
+                        <textarea type="text" placeholder="Exemplo de saída de dados" class="textarea is-small is-pulled-right" name="output_examples"></textarea>
+                    </div>
+                    <div class="is-one-quarter">
+                      <div class="column">
+                        <span class="file-icon has-text-info">
+                          <i class="fas fa-plus-circle is-pulled-left" onclick="duplicarCampos();"></i>
+                        </span>
+                      </div>
+                      <div class="column">
+                        <span class="file-icon has-text-danger">
+                          <i class="fas fa-times-circle is-pulled-right" onclick="removerCampos(this);"></i>
+                        </span>
+                      </div>
+                    </div> 
+                </div>
+                <div id="destino">
+                </div>
+                <div class="content">
+                    <label class="is-size-5">Tempo Limite do Problema: </label>
+                    <input type="number" name="time_limit" min="1" max="10" step="1" autocomplete="off" required>
+                </div>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <label class="is-size-5 is-pulled-right">Arquivo de teste de entrada (.txt): </label>
+                    </div>
+                    <div class="column">
+                        <div id="file-js-example1" class="file has-name is-pulled-left">
+                            <label class="file-label">
+                              <input class="file-input" type="file" name="file" autocomplete="off" required>
+                              <span class="file-cta">
+                                <span class="file-icon">
+                                  <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                  Escolher arquivo
+                                </span>
+                              </span>
+                              <span class="file-name">
+                                Nenhum arquivo foi selecionado
+                              </span>
+                            </label>
+                        </div>
+                        <script>
+                            const fileInput1 = document.querySelector('#file-js-example1 input[type=file]');
+                            fileInput1.onchange = () => {
+                              if (fileInput1.files.length > 0) {
+                                const fileName1 = document.querySelector('#file-js-example1 .file-name');
+                                fileName1.textContent = fileInput1.files[0].name;
+                              }
+                            }
+                        </script> 
+                    </div>
+                </div>
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <label class="is-size-5 is-pulled-right">Arquivo de teste de saída (.txt): </label>
+                    </div>
+                    <div class="column">
+                        <div id="file-js-example2" class="file has-name is-pulled-left">
+                            <label class="file-label">
+                              <input class="file-input" type="file" name="file" autocomplete="off" required>
+                              <span class="file-cta">
+                                <span class="file-icon">
+                                  <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                  Escolher arquivo
+                                </span>
+                              </span>
+                              <span class="file-name">
+                                Nenhum arquivo foi selecionado
+                              </span>
+                            </label>
+                        </div>
+                        <script>
+                            const fileInput2 = document.querySelector('#file-js-example2 input[type=file]');
+                            fileInput2.onchange = () => {
+                              if (fileInput2.files.length > 0) {
+                                const fileName2 = document.querySelector('#file-js-example2 .file-name');
+                                fileName2.textContent = fileInput2.files[0].name;
+                              }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+        <div class="field is-grouped">
+          <div class="control">
+              <p><input class="button is-warning" type="submit" value="Enviar"></p>
+          </div>
+      </div>
+    </form>
+</div>
+{% endblock %}
